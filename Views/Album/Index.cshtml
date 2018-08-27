@@ -1,0 +1,34 @@
+﻿@using Telerik.Web.Mvc.UI;
+@model IEnumerable<TiendaMusical.Models.Albums>
+
+@{
+    ViewBag.Title = "albums";
+}
+
+<h2>Albums</h2>
+
+<p>
+    @Html.ActionLink("Crear nuevo..", "Create")
+</p>
+
+@{
+    Html.Telerik().Grid(Model)
+        .Name("MyGrid")
+        .Columns(col =>
+        {
+            col.Bound(o => o.Artists.Name).Width(120).Groupable(true);
+            col.Bound(o => o.Genres.Name).Width(120).Groupable(true);
+            col.Bound(o => o.Title).Width(120).Groupable(false);
+            col.Bound(o => o.Price).Width(120).Groupable(false);
+            col.Bound(o => o.AlbumArtUrl).Width(120).Groupable(false);
+        })
+    .Pageable(a => a.PageSize(10))
+    .Groupable()
+    .Sortable()
+    .Filterable()
+    .Render();
+}
+
+@(Html.Telerik().StyleSheetRegistrar().DefaultGroup(group => group.Add("telerik.common.css").Add("telerik.windows7.css").Combined(true).Compress(true)))
+@(Html.Telerik().ScriptRegistrar())
+

@@ -1,0 +1,16 @@
+﻿@model IEnumerable<TiendaMusical.Models.Genres>
+
+@{
+    ViewBag.Title = "Tienda Musical";
+}
+<h1>Tienda Musical</h1>
+<hr />
+<h2>Generos: @Model.Count()</h2>
+<div class="row">
+    <ul class="list-group col-md-4">
+        @foreach (var genero in Model)
+        {
+            <li class="list-group-item">@Html.ActionLink(genero.Name,"BuscarGeneros", new { id = genero.GenreId} )</li>
+        }
+    </ul>
+</div>
